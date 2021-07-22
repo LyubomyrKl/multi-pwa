@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './post-list.scss'
 import PostListItem from '../post-list-item/post-list-item';
 
 const PostList = ({posts, onDelete, onToggleImportant, onToggleDone}) => {
   const elements = posts.map((item)=>{
     const {id, label, important, done} = item;
-  
+   
     return(
         <li className='list-group-item'>
              <PostListItem
@@ -23,6 +23,7 @@ const PostList = ({posts, onDelete, onToggleImportant, onToggleDone}) => {
         </li>
     )
   });
+
 
   return(
       <div className='list-wrapper'>

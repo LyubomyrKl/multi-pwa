@@ -1,0 +1,19 @@
+.addBtn{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -107%);
+    background-color: rgba(0, 0, 0, 0.733);
+    color: #fff;
+    font-size: 26px;
+    border-radius: 50%;
+    text-align: center;
+    transition: 0.2s linear;
+   &:hover{
+    background-color: rgba(0, 0, 0, 0.733);
+   }
+}

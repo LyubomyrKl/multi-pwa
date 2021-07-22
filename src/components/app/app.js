@@ -1,23 +1,30 @@
 import React from 'react';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import './app.css'; 
 import AppHeader from '../app-header/app-header';
 import PostForm from '../post-form/post-form';
 import PostList from '../post-list/post-list';
 import AppFooter from '../app-footer/app-footer';
+import HabitsForm from '../habits-form/habits-form';
 
-// https://liubomyr-todo-api.herokuapp.com/api/message
+
 export default class App extends React.Component{
     constructor(props){
         super(props);
         this.getList(); 
         this.state = {
-            data : []
+            data : [],
+            dataHabits: [
+                {title: 'jopa', descr: 'vlad`s', numb: 5 },
+                {title: 'jopa', descr: 'vlad`s', numb: 7 },
+                {title: 'jopa', descr: 'vlad`s', numb: 6 }
+            ]
         };
-        
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
         this.onToggleDone = this.onToggleDone.bind(this);
         this.onToggleImportant = this.onToggleImportant.bind(this)
+        this.addHabit = this.addHabit.bind(this)
     }
 
     byField(field) {
@@ -56,7 +63,11 @@ export default class App extends React.Component{
        });
     }
 
-    
+    addHabit(){
+        
+
+    }
+
     addItem(body){
         if(body){
             const item ={
@@ -81,8 +92,6 @@ export default class App extends React.Component{
                 }
             });
         }
-
-
     }   
 
     onToggleDone(id){
@@ -130,18 +139,27 @@ export default class App extends React.Component{
             }
         });
     }
+
     render(){
         return (
             <div className = 'wrapper'>
-                <AppHeader/>
-                <PostForm
-                onAdd={this.addItem}/>
-                <PostList 
-                onToggleDone ={this.onToggleDone}
-                onToggleImportant = {this.onToggleImportant} 
-                onDelete = {this.deleteItem}        
-                posts={this.state.data}/>
-                <AppFooter/>
+                <Router>
+                    <AppHeader/>
+                    <Route path='/' exact>
+                        <PostForm
+                        onAdd={this.addItem}/>
+                        <PostList 
+                        onToggleDone ={this.onToggleDone}
+                        onToggleImportant = {this.onToggleImportant} 
+                        onDelete = {this.deleteItem}        
+                        posts={this.state.data}/>
+                    </Route>
+                    <Route path='/habits' exact>
+                        <HabitsForm
+                        addHabit={this.addHabit}/>
+                    </Route>
+                    <AppFooter/>
+                </Router>    
             </div>
         )
     }

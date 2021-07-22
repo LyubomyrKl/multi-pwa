@@ -1,4 +1,5 @@
-    import React from 'react';
+import React from 'react';
+import AddBtn from '../addBtn/addBtn';
 import './post-form.scss'
 
 export default class PostForm extends React.Component{
@@ -30,12 +31,8 @@ export default class PostForm extends React.Component{
             <div>
                 <form className='addForm'
                 onSubmit={this.onSubmit}>
-                    <button
-                        type='submit'
-                        className='addBtn'>
-                        <i class="fas fa-plus"></i>
-                    </button>
-
+    
+                    <AddBtn/>
                     <input 
                         type='text' 
                         placeholder='What do u need to do?'
