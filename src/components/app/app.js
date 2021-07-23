@@ -15,9 +15,9 @@ export default class App extends React.Component{
         this.state = {
             data : [],
             dataHabits: [
-                {title: 'jopa', descr: 'vlad`s', numb: 5 },
-                {title: 'jopa', descr: 'vlad`s', numb: 7 },
-                {title: 'jopa', descr: 'vlad`s', numb: 6 }
+                {title: 'jopa', descr: 'vlad`s', checkBoxes: [true, false, false, false]},
+                {title: 'jopa', descr: 'vlad`s', checkBoxes: [true, false, false, false]},
+                {title: 'jopa', descr: 'vlad`s',  checkBoxes: [true, false, false, false]}
             ]
         };
         this.deleteItem = this.deleteItem.bind(this);
@@ -63,9 +63,25 @@ export default class App extends React.Component{
        });
     }
 
-    addHabit(){
-        
+    addHabit({title, descr}){
+        if(title && descr){
+            const item ={
+                title: title,
+                descr: descr,
+                
+            };
 
+            this.setState(({dataHabits})=>{
+            
+                const newArray = [...dataHabits, item];
+                return {
+                    dataHabits : newArray
+                }
+            });
+            
+            console.log(item);
+            console.log(this.state.dataHabits);
+        }
     }
 
     addItem(body){

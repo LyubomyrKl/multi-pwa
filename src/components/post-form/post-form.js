@@ -31,7 +31,6 @@ export default class PostForm extends React.Component{
             <div>
                 <form className='addForm'
                 onSubmit={this.onSubmit}>
-    
                     <AddBtn/>
                     <input 
                         type='text' 
