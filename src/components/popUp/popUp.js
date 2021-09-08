@@ -1,5 +1,6 @@
 import React from 'react'
 import './popUp.scss'
+import AddBtn from '../addBtn/addBtn'
 
 export default class PopUp extends React.Component{
     constructor(props){
@@ -7,26 +8,34 @@ export default class PopUp extends React.Component{
         this.state = {
             title: '',
             descr: '',
+            active: false,
             numb: null
         }
+      
         this.changeDescr = this.changeDescr.bind(this)
-        this.changeNumb = this.changeNumb.bind(this)
         this.changeTitle = this.changeTitle.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+        this.onModule = this.onModule.bind(this)
     }
+
 
     changeTitle(e){
         this.setState({
             title: e.target.value    
         })
     }
-    changeNumb(e){
     
+    onModule(e){
+        e.preventDefault();
+       this.setState({
+           active: !this.state.active
+       })
     }
     changeDescr(e){
         this.setState({
             descr: e.target.value    
         })
+       
     }
 
     onSubmit(e){
@@ -35,13 +44,26 @@ export default class PopUp extends React.Component{
         this.setState({
             title: '',
             descr: '',
-            numb:''
+            numb: null,
+            active: false
         })
+    }
+    
+    toggleActive(){
+        this.props.active = !this.props.active
     }
 
     render(){
+        let className = 'wrapper-habits';
+
+        if(this.state.active){
+            className += ' active'
+        }
+
         return(
-            <div className='wrapper-habits active'>
+            <>
+            <AddBtn onModule = {this.onModule}/>
+            <div className={className}>
                 <form className='habits-form'>
                       <input
                        type='text'
@@ -66,7 +88,8 @@ export default class PopUp extends React.Component{
                        onClick={this.onSubmit}/>
                 </form>
             </div>
-          )
+            </>
+        )
     }
 }
 

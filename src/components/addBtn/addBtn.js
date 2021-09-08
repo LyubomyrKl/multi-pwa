@@ -6,10 +6,8 @@ const AddBtn = ({onModule}) =>{
         <button
         type='submit'
         className='addBtn'
-        onClick={()=>{
-            console.log('klds');
-        }}>
-            <i class="fas fa-plus"></i>
+        onClick={onModule}>
+            <i className="fas fa-plus"></i>
         </button>   
 
     )

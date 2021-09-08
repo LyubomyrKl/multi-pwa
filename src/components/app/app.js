@@ -6,25 +6,143 @@ import PostForm from '../post-form/post-form';
 import PostList from '../post-list/post-list';
 import AppFooter from '../app-footer/app-footer';
 import HabitsForm from '../habits-form/habits-form';
-
+import HabitsList from '../habits-list/habits-list';
+import WorkoutAccord from '../workoutLog/workout-accord/workout-accord';
 
 export default class App extends React.Component{
     constructor(props){
         super(props);
-        this.getList(); 
+        this.getList()
         this.state = {
             data : [],
-            dataHabits: [
-                {title: 'jopa', descr: 'vlad`s', checkBoxes: [true, false, false, false]},
-                {title: 'jopa', descr: 'vlad`s', checkBoxes: [true, false, false, false]},
-                {title: 'jopa', descr: 'vlad`s',  checkBoxes: [true, false, false, false]}
-            ]
+            habitsData: [
+                {
+                  title: 'Smoke',
+                  descr: 'Smoke everyday',
+                  checkboxes: [true, true, true, true,  true, false, false, false,false, false, false,false, false, false,false, false, false,false, false, false,false, false, false,false, false, false],
+                  id: '21sdada21'
+                },
+                {
+                  title: 'Run',
+                  descr: 'Run run run run run run run run run',
+                  checkboxes: [false, true, false, false, true, true, false],
+                  id: '21e121'
+                },
+                {
+                  title: 'Run',
+                  descr: 'Run run run run run run run run run',
+                  checkboxes: [false, true, false, false, true, true, false, false, true, true, false,false, true, true, false],
+                  id: '21321e121'
+                }
+              ],
+            workoutLogData :[
+                {   
+                   id: 531,
+                   title: "Pullups",
+                   weightRepsPairs: [
+                       { weight:"91",reps:"21"},
+                       { weight:"92",reps:"21"},
+                       { weight:"93",reps:"21"},
+                    ]
+                },
+                {   
+                    id: 532,
+                    title: "Pushups",
+                    weightRepsPairs: []
+                 },
+                 {   
+                    id: 533,
+                    title: "Squats",
+                    weightRepsPairs: []
+                 },
+                 {   
+                    id: 534,
+                    title: "Barbell overhead press",
+                    weightRepsPairs: []
+                 },
+                 {   
+                    id: 535,
+                    title: " Dumbbell overhead press",
+                    weightRepsPairs: []
+                 },
+                 {   
+                    id: 536,
+                    title: "Dumbbell bench press",
+                    weightRepsPairs: []
+                 },
+                 {   
+                    id: 537,
+                    title: "Bench press",
+                    weightRepsPairs: []
+                 },
+                 {   
+                    id: 538,
+                    title: "Bent-over barbell",
+                    weightRepsPairs: []
+                 },
+                 {   
+                    id: 539,
+                    title: "Bent-over Dumbbell ",
+                    weightRepsPairs: []
+                 },
+                 {   
+                    id: 540,
+                    title: "Deadlift",
+                    weightRepsPairs: []
+                 },
+                 {   
+                    id: 541,
+                    title: "Pull-down ",
+                    weightRepsPairs: []
+                 },
+                 {   
+                    id: 543,
+                    title: "Seated cable row",
+                    weightRepsPairs: []
+                 },
+                 {   
+                    id: 543,
+                    title: "Seated cable row",
+                    weightRepsPairs: []
+                 },
+                 {   
+                    id: 543,
+                    title: "Seated cable row",
+                    weightRepsPairs: []
+                 },
+                 {   
+                    id: 543,
+                    title: "Seated cable row",
+                    weightRepsPairs: []
+                 },
+                 {   
+                    id: 543,
+                    title: "Seated cable row",
+                    weightRepsPairs: []
+                 },
+                 {   
+                    id: 543,
+                    title: "Seated cable row",
+                    weightRepsPairs: []
+                 },
+                 {   
+                    id: 543,
+                    title: "Seated cable row",
+                    weightRepsPairs: []
+                 },
+                 
+              ]
         };
+
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
         this.onToggleDone = this.onToggleDone.bind(this);
         this.onToggleImportant = this.onToggleImportant.bind(this)
         this.addHabit = this.addHabit.bind(this)
+        this.onDone = this.onDone.bind(this)
+        this.onOpenModule = this.onOpenModule.bind(this)
+        this.addReps=this.addReps.bind(this)
+        this.deletLog = this.deletLog.bind(this)
     }
 
     byField(field) {
@@ -32,20 +150,20 @@ export default class App extends React.Component{
     }
 
     async getList(){
-      await fetch('https://liubomyr-todo-api.herokuapp.com/api/message')
-       .then((response)=>{
-        return response.json();
-        })
-        .then((response)=>{
-            this.setState(({data})=>{
-                const newList = [...response]
-                newList.sort((a, b)=> a.important > b.important)
-                return {
-                    data: newList
-                }
-            })
-        })
-    }
+        await fetch('https://liubomyr-todo-api.herokuapp.com/api/message')
+         .then((response)=>{
+          return response.json();
+          })
+          .then((response)=>{
+              this.setState(({data})=>{
+                  const newList = [...response]
+                  newList.sort((a, b)=> a.important > b.important)
+                  return {
+                      data: newList
+                  }
+              })
+          })
+      }
 
     deleteItem(id){
         fetch(`https://liubomyr-todo-api.herokuapp.com/api/message/${id}`, {
@@ -62,25 +180,70 @@ export default class App extends React.Component{
            }
        });
     }
+    
+    deletLog(idx, id){
 
-    addHabit({title, descr}){
-        if(title && descr){
+        this.setState({
+            workoutLogData: this.state.workoutLogData.map((elem, elmidx) => {
+                if (elem.id === id){
+                    let index = this.state.workoutLogData[elmidx].weightRepsPairs.findIndex((a, indexToDel)=>indexToDel=== idx)
+                    
+                    let newArr = [...elem.weightRepsPairs.splice(0, index), ...elem.weightRepsPairs.splice(index+1)]
+                    console.log(newArr)
+                    return {
+                      ...elem,
+                      weightRepsPairs: newArr 
+                    }
+                  }
+                  return elem;
+            }),
+        })
+    }
+    onOpenModule(){
+        console.log(this.state.active);
+        this.setState(({active})=>{
+            active = !active
+        })
+        
+    }
+
+    addReps(item, id){
+        const [weight, reps] = item
+        if(weight && reps){
+            const item ={
+                weight: weight,
+                reps: reps
+            }
+
+            this.setState({
+                workoutLogData: this.state.workoutLogData.map((elem) => {
+                  if (elem.id === id){
+                    return {
+                      ...elem,
+                      weightRepsPairs: [...elem.weightRepsPairs, item],
+                    }
+                  }
+                  return elem;
+                }),
+            })
+         };    
+    }
+
+
+    addHabit({title, descr, numb}){
+        if(title && descr && numb){
             const item ={
                 title: title,
-                descr: descr,
-                
+                descr: descr, 
+                numb:  numb 
             };
-
-            this.setState(({dataHabits})=>{
-            
-                const newArray = [...dataHabits, item];
+            this.setState(({habitsData})=>{
+                const newArray = [...habitsData, item];
                 return {
-                    dataHabits : newArray
+                    habitsData : newArray
                 }
             });
-            
-            console.log(item);
-            console.log(this.state.dataHabits);
+
         }
     }
 
@@ -156,12 +319,31 @@ export default class App extends React.Component{
         });
     }
 
+    onDone(id, idx){
+        let index = this.state.habitsData.findIndex(elem=> elem.id ===id);
+        let  item = this.state.habitsData[index];
+        let changedArr = [...item.checkboxes.slice(0, idx), !item.checkboxes[idx], ...item.checkboxes.slice(idx+1)]
+
+
+        let newItem = {...item, checkboxes: changedArr}
+
+        
+        this.setState(({habitsData})=>{
+            const newArr = [...habitsData.slice(0, index), newItem, ...habitsData.slice(index+1)]
+            return{
+                habitsData: newArr
+            }
+        })
+        
+    }
+
     render(){
         return (
             <div className = 'wrapper'>
                 <Router>
-                    <AppHeader/>
+                    
                     <Route path='/' exact>
+                    <AppHeader name='To' surname="Do" classOfPage='toDoPage'/>
                         <PostForm
                         onAdd={this.addItem}/>
                         <PostList 
@@ -171,13 +353,25 @@ export default class App extends React.Component{
                         posts={this.state.data}/>
                     </Route>
                     <Route path='/habits' exact>
+                    <AppHeader name='Ha' surname='Bits' classOfPage='habitsPage'/>
                         <HabitsForm
-                        addHabit={this.addHabit}/>
+                        addHabit={this.addHabit}
+                        onModule={this.onOpenModule}/>
+                        <HabitsList
+                        activity = {this.state.active}
+                        habitsData={this.state.habitsData}
+                        onDone={this.onDone}/>
                     </Route>
-                    <AppFooter/>
+                    <Route path='/workout-log'>
+                    <AppHeader name='Workout'  surname='Log' classOfPage='workoutPage'/>
+                        <WorkoutAccord dataLog = {this.state.workoutLogData}
+                                        addReps = {this.addReps}
+                                        onDeleteLog = {this.deletLog}/>
+                                        
+                    </Route>
+                    <AppFooter />
                 </Router>    
             </div>
         )
     }
 }
-

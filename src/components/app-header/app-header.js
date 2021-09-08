@@ -1,10 +1,10 @@
 import React from 'react'
 import './app-header.scss';
 
-const AppHeader = ()=> {
+const AppHeader = ({name, surname, classOfPage})=> {
     return (
         <header className ="AppHeader">
-            <h1>To<span>Do</span></h1>
+            <h1>{name}<span className={classOfPage}>{surname}</span></h1>
         </header>
     )
 }

@@ -22,11 +22,17 @@
                     transition: 0.2s linear;
                 }
             }
-            a.active{
-                color: #9b59b6;
-            }
+            
         }
-
+        &_item.toDoPage .active{
+            color: #9b59b6;
+        }
+        &_item.habitsPage .active{
+            color: rgb(83, 173, 83);
+        }
+        &_item.workoutPage .active{
+            color: rgb(61, 100, 230);
+        }
     
     }
 

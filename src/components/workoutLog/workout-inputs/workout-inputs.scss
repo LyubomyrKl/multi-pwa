@@ -1,0 +1,24 @@
+.workout-form{
+    display: flex;
+    align-items: center;
+
+    input:focus{
+        outline: none;
+    }
+    input{
+        text-align: center;
+        width: 30px;
+        height: 30px;
+        border: 2px solid black;
+        border-radius: 50%;
+        margin: 10px;
+    }
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+
+    }
+
+ 
+    
+}

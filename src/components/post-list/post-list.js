@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './post-list.scss'
 import PostListItem from '../post-list-item/post-list-item';
 
