@@ -8,7 +8,8 @@ export default function WorkoutAccord({addReps, onDeleteLog, dataLog}) {
         const{id, title, weightRepsPairs} = item
         return(
             <AccordionItem
-            id={id}
+            id = {id}
+            key={id}
             title = {title}
             weightRepsPairs={weightRepsPairs}
             addItem = {addReps}
@@ -17,7 +18,7 @@ export default function WorkoutAccord({addReps, onDeleteLog, dataLog}) {
     })
   return (
     
-    <div className='accrodion-wrapper'>
+    <div  className='accrodion-wrapper'>
         {element}
     </div>
   );

@@ -9,7 +9,7 @@ export default class PopUp extends React.Component{
             title: '',
             descr: '',
             active: false,
-            numb: null
+            numb: ''
         }
       
         this.changeDescr = this.changeDescr.bind(this)
@@ -69,19 +69,19 @@ export default class PopUp extends React.Component{
                        type='text'
                        placeholder='Habit Title'
                        onChange = {this.changeTitle}
-                       value= {this.state.title}
+                       
                        />
                        <input
                        type='text'
                        placeholder='Description'
                        onChange = {this.changeDescr}
-                       value= {this.state.descr}
+                       
                        />
                        <input
                        type='number'
                        placeholder='Number of days'
                        onChange = {this.changeNumb}
-                       value= {this.state.numb}
+                       
                        />
                        <input
                        type='submit'

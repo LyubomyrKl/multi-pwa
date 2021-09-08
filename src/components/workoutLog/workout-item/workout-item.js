@@ -11,13 +11,13 @@ export default function AccordionItem(props) {
     
     const elements = weightRepsPairs.map((pair, idx)=>{
        return(
-       <div className='container'> <p className='item' id={idx}><span className='numbers'>{pair.weight}</span>X<span className='numbers'>{pair.reps}</span><span  onClick = {()=>{onDelete(idx, id)}} className='cancel'><i   class="fas fa-backspace"></i></span></p></div>
+       <div className='container' key={idx} > <p className='item' ><span className='numbers'>{pair.weight}</span>X<span className='numbers'>{pair.reps}</span><span  onClick = {()=>{onDelete(idx, id)}} className='cancel'><i   className="fas fa-backspace"></i></span></p></div>
        )
     })
     
   return (
    <>
-    <Accordion   id={id} className='accordion-item'>
+    <Accordion key={id} className='accordion-item'>
         <AccordionSummary
          className='accordion-title'
          aria-controls="panel1a-content"

@@ -100,36 +100,7 @@ export default class App extends React.Component{
                     title: "Seated cable row",
                     weightRepsPairs: []
                  },
-                 {   
-                    id: 543,
-                    title: "Seated cable row",
-                    weightRepsPairs: []
-                 },
-                 {   
-                    id: 543,
-                    title: "Seated cable row",
-                    weightRepsPairs: []
-                 },
-                 {   
-                    id: 543,
-                    title: "Seated cable row",
-                    weightRepsPairs: []
-                 },
-                 {   
-                    id: 543,
-                    title: "Seated cable row",
-                    weightRepsPairs: []
-                 },
-                 {   
-                    id: 543,
-                    title: "Seated cable row",
-                    weightRepsPairs: []
-                 },
-                 {   
-                    id: 543,
-                    title: "Seated cable row",
-                    weightRepsPairs: []
-                 },
+         
                  
               ]
         };
@@ -181,15 +152,13 @@ export default class App extends React.Component{
        });
     }
     
-    deletLog(idx, id){
+    deletLog(idx, key){
 
         this.setState({
             workoutLogData: this.state.workoutLogData.map((elem, elmidx) => {
-                if (elem.id === id){
+                if (elem.id === key){
                     let index = this.state.workoutLogData[elmidx].weightRepsPairs.findIndex((a, indexToDel)=>indexToDel=== idx)
-                    
                     let newArr = [...elem.weightRepsPairs.splice(0, index), ...elem.weightRepsPairs.splice(index+1)]
-                    console.log(newArr)
                     return {
                       ...elem,
                       weightRepsPairs: newArr 
