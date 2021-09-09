@@ -7,7 +7,7 @@ img {max-width: 100%;display: block;}
 
 .wrapper{
     height: 100vh;
-    background: url('./wp2039804-telegram-wallpapers.png');
+    background: #353b48;
     background-size: cover;
     background-position:  bottom;
     background-repeat: no-repeat;
