@@ -1,0 +1,28 @@
+{
+    "background_color": "#ffffff",
+    "description": "simple PWA app",
+    "dir": "ltr",
+    "display": "standalone",
+    "name": "JohnGalt",
+    "orientation": "any",
+    "scope": "/",
+    "short_name": "JohnGalt",
+    "start_url": "/",
+    "theme_color": "#ffffff",
+    "categories": [],
+    "screenshots": [],
+    "icons": [
+      {
+        "src": "/logo.ico",
+        "type": "image/x-icon",
+        "purpose": "any maskable"
+       
+      },
+      {
+        "src": "/apple-touch.png",
+        "type": "image/png",
+        "sizes": " 512x512 192x192 64x64 32x32 24x24 16x16"
+      }
+    ],
+    "shortcuts": []
+  }
