@@ -49,9 +49,13 @@
 }
 
 @media (max-width: 768.92px) {
+    .post-list-item{
+        padding: 10px 5px;
+    }
     .list-wrapper{
         font-size: 20px; 
         max-height: 65%;
+        margin: 70px auto;
        
     }
 }

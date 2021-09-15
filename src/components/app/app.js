@@ -14,6 +14,7 @@ export default class App extends React.Component{
         super(props);
         this.getList()
         this.state = {
+            bgUrl: '/img/purple.png',
             data : [],
             habitsData: [
                 {
@@ -114,8 +115,12 @@ export default class App extends React.Component{
         this.onOpenModule = this.onOpenModule.bind(this)
         this.addReps=this.addReps.bind(this)
         this.deletLog = this.deletLog.bind(this)
+        this.changeBg = this.changeBg.bind(this)
     }
 
+    componentDidMount(){
+        
+    }
     byField(field) {
         return (a, b) => a[field] > b[field] ? 1 : -1;
     }
@@ -167,6 +172,10 @@ export default class App extends React.Component{
                   return elem;
             }),
         })
+    }
+
+    deleteHabits(){
+
     }
     onOpenModule(){
         console.log(this.state.active);
@@ -306,11 +315,18 @@ export default class App extends React.Component{
         
     }
 
+    changeBg(url){
+        this.setState({
+            bgUrl: url
+        })
+    }
+    
+    
+    
     render(){
         return (
-            <div className = 'wrapper'>
+            <div className = 'wrapper' style={{backgroundImage: `url(${this.state.bgUrl})` }}>
                 <Router>
-                    
                     <Route path='/' exact>
                     <AppHeader name='To' surname="Do" classOfPage='toDoPage'/>
                         <PostForm
@@ -335,12 +351,13 @@ export default class App extends React.Component{
                     <AppHeader name='Workout'  surname='Log' classOfPage='workoutPage'/>
                         <WorkoutAccord dataLog = {this.state.workoutLogData}
                                         addReps = {this.addReps}
-                                        onDeleteLog = {this.deletLog}/>
-                                        
+                                        onDeleteLog = {this.deletLog}/>       
                     </Route>
-                    <AppFooter />
+                    <AppFooter onChangeBg = {this.changeBg} />
                 </Router>    
             </div>
         )
     }
 }
+
+

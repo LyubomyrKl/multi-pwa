@@ -18,7 +18,7 @@ const HabitsList = ({habitsData, onDone}) =>{
     })
 
     return(
-        <div className='list-wrapper'>
+        <div className='list-wrapper-habits'>
           <ul className='habits-list'>
                {elements}
           </ul>
