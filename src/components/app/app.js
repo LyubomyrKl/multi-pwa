@@ -116,10 +116,11 @@ export default class App extends React.Component{
         this.addReps=this.addReps.bind(this)
         this.deletLog = this.deletLog.bind(this)
         this.changeBg = this.changeBg.bind(this)
+        this.deleteHabits = this.deleteHabits.bind(this)
     }
 
     componentDidMount(){
-        
+
     }
     byField(field) {
         return (a, b) => a[field] > b[field] ? 1 : -1;
@@ -174,8 +175,14 @@ export default class App extends React.Component{
         })
     }
 
-    deleteHabits(){
-
+    deleteHabits(id){
+        this.setState(({habitsData})=>{
+            let index = habitsData.findIndex(elem=>elem.id === id)
+            const newArray = [...habitsData.splice(0, index), ...habitsData.splice(index+1)]
+            return{
+                habitsData: newArray
+            }
+        });
     }
     onOpenModule(){
         console.log(this.state.active);
@@ -343,7 +350,7 @@ export default class App extends React.Component{
                         addHabit={this.addHabit}
                         onModule={this.onOpenModule}/>
                         <HabitsList
-                        activity = {this.state.active}
+                        onDelete ={this.deleteHabits}
                         habitsData={this.state.habitsData}
                         onDone={this.onDone}/>
                     </Route>
